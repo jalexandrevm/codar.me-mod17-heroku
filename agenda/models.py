@@ -19,3 +19,18 @@ class Agendamento(models.Model):
 
     def __str__(self):
         return f"""{self.id} - {self.data_horario} - {self.nome_cliente}"""
+
+
+class Endereco(models.Model):
+    prestador = models.ForeignKey(
+        "auth.User", related_name="enderecos", on_delete=models.CASCADE
+    )
+    cep = models.CharField(max_length=10, unique=False)
+    estado = models.CharField(max_length=2, unique=False)
+    cidade = models.CharField(max_length=50, unique=False)
+    bairro = models.CharField(max_length=50, unique=False)
+    rua = models.CharField(max_length=100)
+    complemento = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ["-cep"]

@@ -1,13 +1,21 @@
 from datetime import datetime, timedelta, timezone
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from agenda.libs.brasil_api import get_cep, is_cep
+import json
 
 from agenda.models import Agendamento
-from agenda.serializers import AgendamentoSerializer, PrestadorSerializer
+from agenda.serializers import (
+    AgendamentoSerializer,
+    EnderecoSerializer,
+    PrestadorSerializer,
+)
 from agenda.utils import (
     data_str_to_datetime_list,
     get_horarios_disponiveis,
@@ -65,6 +73,31 @@ class AgendamentoListCreate(generics.ListCreateAPIView):
         username = self.request.query_params.get("username", None)
         queryset = Agendamento.objects.filter(prestador__username=username)
         return queryset
+
+
+# projeto final módulo 16
+@api_view(http_method_names=["POST"])
+def prestador_endereco_create(request, pk):
+    usr = get_object_or_404(User, id=pk)
+    if request.method == "POST":
+        if is_cep(request.data["cep"]):
+            cep_api = get_cep(request.data["cep"])
+        if cep_api.status_code != 200:
+            return JsonResponse(json.loads(cep_api.text), status=400, safe=False)
+        if not request.data.get("estado"):
+            request.data["estado"] = json.loads(cep_api.text)["state"]
+        if not request.data.get("cidade"):
+            request.data["cidade"] = json.loads(cep_api.text)["city"]
+        if not request.data.get("bairro"):
+            request.data["bairro"] = json.loads(cep_api.text)["neighborhood"]
+        if not request.data.get("rua"):
+            request.data["rua"] = json.loads(cep_api.text)["street"]
+        request.data["prestador"] = usr.username
+        end_seriado = EnderecoSerializer(data=request.data)
+        if end_seriado.is_valid():
+            end_seriado.save()
+            return JsonResponse(end_seriado.data, status=201)
+        return JsonResponse(end_seriado.errors, status=400)
 
 
 class PrestadorList(generics.ListAPIView):

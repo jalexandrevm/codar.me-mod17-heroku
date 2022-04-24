@@ -6,7 +6,31 @@ from django.contrib.auth.models import User
 import pytz
 from rest_framework import serializers
 from django.utils import timezone
-from agenda.models import Agendamento
+from agenda.models import Agendamento, Endereco
+
+
+class EnderecoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Endereco
+        fields = [
+            "id",
+            "cep",
+            "estado",
+            "cidade",
+            "bairro",
+            "rua",
+            "complemento",
+            "prestador",
+        ]
+
+    prestador = serializers.CharField()
+
+    def validate_prestador(self, value):
+        try:
+            prestador_banco = User.objects.get(username=value)
+        except User.DoesNotExist:
+            raise serializers.ValidationError("Usuário não existe!")
+        return prestador_banco
 
 
 class AgendamentoSerializer(serializers.ModelSerializer):
