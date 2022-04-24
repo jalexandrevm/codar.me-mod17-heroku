@@ -6,6 +6,7 @@ from agenda.views import (
     AgendamentoListCreate,
     HorariosList,
     PrestadorList,
+    prestador_endereco_create,
 )
 
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
     path("agendamentos/<int:pk>/", AgendamentoDetalheAlteraCancela.as_view()),
     path("horarios/", HorariosList.as_view()),
     path("prestadores/", PrestadorList.as_view()),
+    path("prestadores/<int:pk>/enderecos/", prestador_endereco_create),
 ]
