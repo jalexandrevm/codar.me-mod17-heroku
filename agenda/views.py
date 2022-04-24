@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.response import Response
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
@@ -73,6 +74,11 @@ class AgendamentoListCreate(generics.ListCreateAPIView):
         username = self.request.query_params.get("username", None)
         queryset = Agendamento.objects.filter(prestador__username=username)
         return queryset
+
+
+@api_view(http_method_names=["GET"])
+def health_check(request):
+    return Response({"status": "OK"}, status=200)
 
 
 # projeto final módulo 16
