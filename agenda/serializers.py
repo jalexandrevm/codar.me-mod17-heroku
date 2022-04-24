@@ -161,10 +161,10 @@ class AgendamentoSerializer(serializers.ModelSerializer):
 class PrestadorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "agendamentos"]
+        fields = ["id", "username", "agendamentos", "enderecos"]
 
     agendamentos = AgendamentoSerializer(many=True, read_only=True)
-    pass
+    enderecos = EnderecoSerializer(many=True, read_only=True)
 
 
 """ def create(self, validated_data):
