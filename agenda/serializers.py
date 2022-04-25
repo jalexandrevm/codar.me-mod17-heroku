@@ -109,9 +109,6 @@ class AgendamentoSerializer(serializers.ModelSerializer):
         data_horario: precisa ser de 30 em 30 minutos"""
         # primeiro pegamos valores da requisição
         data_horario = attrs.get("data_horario", "")
-        data_horario = datetime.fromisoformat(str(data_horario)).replace(
-            tzinfo=pytz.UTC
-        )
         telefone_cliente = attrs.get("telefone_cliente", "")
         email_cliente = attrs.get("email_cliente", "")
         prestador = attrs.get("prestador", "")
@@ -125,6 +122,9 @@ class AgendamentoSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("E-mail .br deve ter fone +55 !")
         # regras de validação para horários
         if data_horario:
+            data_horario = datetime.fromisoformat(str(data_horario)).replace(
+                tzinfo=pytz.UTC
+            )
             lst_email = (
                 Agendamento.objects.filter(email_cliente=email_cliente)
                 .filter(cancelado=False)
