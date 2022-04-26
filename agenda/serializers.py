@@ -161,8 +161,9 @@ class AgendamentoSerializer(serializers.ModelSerializer):
 class PrestadorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "agendamentos", "enderecos"]
+        fields = ["id", "username", "email", "agendamentos", "enderecos"]
 
+    email = serializers.EmailField()
     agendamentos = AgendamentoSerializer(many=True, read_only=True)
     enderecos = EnderecoSerializer(many=True, read_only=True)
 

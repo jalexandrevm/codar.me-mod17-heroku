@@ -76,6 +76,28 @@ class AgendamentoListCreate(generics.ListCreateAPIView):
         return queryset
 
 
+@api_view(http_method_names=["POST"])
+def user_create(request):
+    if request.method == "POST":
+        name = request.data["username"]
+        pass_word = request.data["password"]
+        email = request.data["email"]
+        if name and pass_word and email:
+            usr_obj = User()
+            usr_obj.username = name
+            usr_obj.email = email
+            usr_obj.set_password(pass_word)
+            usr_seriado = PrestadorSerializer(usr_obj)
+            if usr_seriado.is_valid():
+                usr_seriado.save()
+                return JsonResponse(usr_seriado.data, status=201)
+        seriado_erro = PrestadorSerializer(request.data)
+        seriado_erro.is_valid()
+        return JsonResponse(seriado_erro.errors, status=400)
+        pass
+    pass
+
+
 @api_view(http_method_names=["GET"])
 def health_check(request):
     return Response({"status": "OK"}, status=200)
