@@ -7,7 +7,7 @@ import logging
 # projeto final módulo 16
 def is_cep(cep_str):
     if settings.TESTING == True:
-        logging.info(f"Requisição não realizada, em modo teste!")
+        # logging.info(f"Requisição não realizada, em modo teste!")
         if cep_str == "00000000":
             return True
         return False
@@ -36,16 +36,16 @@ def get_cep(cep_str):
 
 
 def is_feriado(date: date):
-    logging.info(f"Fazendo uma requisição para BrasilAPI na data: {date}")
+    # logging.info(f"Fazendo uma requisição para BrasilAPI na data: {date}")
     if settings.TESTING == True:
-        logging.info(f"Requisição não realizada, em modo teste!")
+        # logging.info(f"Requisição não realizada, em modo teste!")
         if date.day == 25 and date.month == 12:
             return True
         return False
     ano = date.year
     retorno = requests.get(f"https://brasilapi.com.br/api/feriados/v1/{ano}")
     if not retorno.status_code == 200:
-        logging.error(f"Algum erro aconteceu ao consultar BrasilAPI!")
+        # logging.error(f"Algum erro aconteceu ao consultar BrasilAPI!")
         return False
         # raise ValueError("Problema ao buscar feriados nacionais!")
     feriados = json.loads(retorno.text)
