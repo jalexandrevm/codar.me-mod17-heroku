@@ -1,11 +1,11 @@
-2022-04-27 16:23:21,226 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
-2022-04-27 16:23:21,429 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
-2022-04-27 16:23:21,627 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
-2022-04-27 16:23:21,825 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
-2022-04-27 16:23:22,027 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
-2022-04-27 16:23:22,892 - DEBUG - Starting new HTTPS connection (1): brasilapi.com.br:443 - _new_conn from connectionpool.py linha 1001
-2022-04-27 16:23:23,130 - DEBUG - https://brasilapi.com.br:443 "GET /api/feriados/v1/2025 HTTP/1.1" 200 None - _make_request from connectionpool.py linha 456
-2022-04-27 16:23:23,145 - DEBUG - Starting new HTTPS connection (1): brasilapi.com.br:443 - _new_conn from connectionpool.py linha 1001
-2022-04-27 16:23:23,380 - DEBUG - https://brasilapi.com.br:443 "GET /api/feriados/v1/2025 HTTP/1.1" 200 None - _make_request from connectionpool.py linha 456
-2022-04-27 16:23:24,826 - WARNING - Forbidden: /api/prestadores/ - log_response from log.py linha 241
-2022-04-27 16:23:25,442 - WARNING - Forbidden: /api/prestadores/ - log_response from log.py linha 241
+2022-05-01 10:44:37,758 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
+2022-05-01 10:44:37,969 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
+2022-05-01 10:44:38,172 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
+2022-05-01 10:44:38,368 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
+2022-05-01 10:44:38,567 - WARNING - Bad Request: /api/agendamentos/ - log_response from log.py linha 241
+2022-05-01 10:44:39,498 - DEBUG - Starting new HTTPS connection (1): brasilapi.com.br:443 - _new_conn from connectionpool.py linha 1001
+2022-05-01 10:44:40,732 - DEBUG - https://brasilapi.com.br:443 "GET /api/feriados/v1/2025 HTTP/1.1" 200 None - _make_request from connectionpool.py linha 456
+2022-05-01 10:44:40,752 - DEBUG - Starting new HTTPS connection (1): brasilapi.com.br:443 - _new_conn from connectionpool.py linha 1001
+2022-05-01 10:44:41,006 - DEBUG - https://brasilapi.com.br:443 "GET /api/feriados/v1/2025 HTTP/1.1" 200 None - _make_request from connectionpool.py linha 456
+2022-05-01 10:44:42,460 - WARNING - Forbidden: /api/prestadores/ - log_response from log.py linha 241
+2022-05-01 10:44:43,067 - WARNING - Forbidden: /api/prestadores/ - log_response from log.py linha 241
